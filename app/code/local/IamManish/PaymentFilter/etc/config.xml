@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <IamManish_PaymentFilter>
+      <version>0.1.0</version>
+    </IamManish_PaymentFilter>
+  </modules>
+  <global>
+    <helpers>
+      <paymentfilter>
+        <class>IamManish_PaymentFilter_Helper</class>
+      </paymentfilter>
+    </helpers>
+	<models>
+	  <paymentfilter>
+		<class>IamManish_PaymentFilter_Model</class>
+		<resourceModel>paymentfilter_mysql4</resourceModel>
+	  </paymentfilter>
+	</models>
+    <events>
+	  <payment_method_is_active> <!-- identifier of the event we want to catch -->
+        <observers>
+          <payment_method_is_active_handler> <!-- identifier of the event handler -->
+            <type>model</type> <!-- class method call type; valid are model, object and singleton -->
+            <class>paymentfilter/observer</class> <!-- observers class alias -->
+            <method>paymentMethodIsActive</method>  <!-- observer's method to be called -->
+            <args></args> <!-- additional arguments passed to observer -->
+          </payment_method_is_active_handler>
+        </observers>
+      </payment_method_is_active>
+    </events>
+  </global>
+</config> 
